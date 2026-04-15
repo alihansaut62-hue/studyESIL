@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Cyber Security Scanner</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Контейнер */
+.container {
+    width: 900px;
+    padding: 30px;
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 0 40px rgba(114, 9, 183, 0.5);
+
+    animation: fade 1s ease;
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+/* Поле ввода */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+}
+
+/* Кнопка */
+button {
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    background: #7209b7;
+    color: white;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #9d4edd;
+    box-shadow: 0 0 15px #9d4edd;
+}
+
+/* Карточки */
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Общий стиль карточки */
+.card {
+    padding: 20px;
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* Цвета */
+.safe {
+    border-left: 5px solid #00ff9f;
+}
+
+.warning {
+    border-left: 5px solid #ffcc00;
+}
+
+.danger {
+    border-left: 5px solid #ff4d6d;
+}
+
+/* Текст */
+.card h3 {
+    margin-bottom: 10px;
+}
+
+/* Риск */
+.risk {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+/* Анимация */
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔐 Cyber Scanner</h1>
+    <p class="subtitle">Проверь сайт на уязвимости за секунды</p>
+
+    <div class="input-group">
+        <input type="text" placeholder="Введите URL (например: example.com)">
+        <button onclick="scan()">Сканировать</button>
+    </div>
+
+    <div class="results" id="results">
+
+        <div class="card safe">
+            <h3>SQL Injection</h3>
+            <p>Уязвимости не обнаружены</p>
+        </div>
+
+        <div class="card danger">
+            <h3>XSS</h3>
+            <p>Обнаружена возможная уязвимость</p>
+        </div>
+
+        <div class="card warning">
+            <h3>Открытые порты</h3>
+            <p>Найдены подозрительные порты</p>
+        </div>
+
+        <div class="card safe">
+            <h3>Конфигурация</h3>
+            <p>Безопасная настройка</p>
+        </div>
+
+    </div>
+
+    <div class="risk" id="risk">
+        🔥 Уровень риска: <b>Средний</b>
+    </div>
+
+</div>
+
+<script>
+function scan() {
+    const results = document.getElementById("results");
+    const risk = document.getElementById("risk");
+
+    results.innerHTML = `
+        <div class="card danger">
+            <h3>SQL Injection</h3>
+            <p>Найдена уязвимость!</p>
+        </div>
+
+        <div class="card danger">
+            <h3>XSS</h3>
+            <p>Обнаружена атака</p>
+        </div>
+
+        <div class="card warning">
+            <h3>Порты</h3>
+            <p>Открыты: 21, 80</p>
+        </div>
+
+        <div class="card safe">
+            <h3>Конфигурация</h3>
+            <p>Частично защищено</p>
+        </div>
+    `;
+
+    risk.innerHTML = "🔥 Уровень риска: <b style='color:red;'>Высокий</b>";
+}
+</script>
+
+</body>
+</html>
