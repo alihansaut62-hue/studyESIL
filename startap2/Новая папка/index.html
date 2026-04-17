@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIPHER — Сканер безопасности</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<section class="hero" id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="eyebrow">Анализ безопасности</div>
+
+  <h1 class="hero-title">CY<span class="hollow">
+    BHER</span></h1>
+
+  <p class="hero-sub">
+    Глубокая разведка инфраструктуры.<br>
+    Выявляем векторы атак до того, как это сделает злоумышленник.
+  </p>
+
+  <div class="scan-wrap">
+    <div class="input-shell">
+      <div class="input-proto">https://</div>
+      <input type="text" id="urlInput"
+        placeholder="example.com или https://example.com"
+        autocomplete="off" spellcheck="false" />
+      <button class="scan-btn" id="scanBtn" onclick="startScan()">Сканировать</button>
+    </div>
+    <div class="err-msg" id="errMsg"></div>
+    <div class="scan-progress" id="scanProgress">
+      <div class="scan-dot"></div>
+      <div class="prog-txt" id="progTxt">Инициализация...</div>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+  </div>
+
+  <div class="down-arrow" id="downArrow" onclick="scrollToResults()">
+    <span>Результаты</span>
+    <div class="arrow-line"></div>
+  </div>
+</section>
+
+<div id="results">
+
+  <div class="summary-bar" id="summaryBar">
+    <div>
+      <div class="sum-lbl">Цель сканирования</div>
+      <div class="sum-url" id="sumUrl">—</div>
+    </div>
+    <div id="riskPill" class="risk-pill">—</div>
+  </div>
+
+  <div class="stats-row" id="statsRow">
+    <div class="stat-box">
+      <div class="stat-val" id="st-h" style="color:var(--red)">—</div>
+      <div class="stat-lbl">Уязвимых заголовков</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="st-p" style="color:var(--amber)">—</div>
+      <div class="stat-lbl">Открытых портов</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="st-l" style="color:var(--blue)">—</div>
+      <div class="stat-lbl">Утечек информации</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="st-c" style="color:var(--t1)">—</div>
+      <div class="stat-lbl">Критических проблем</div>
+    </div>
+  </div>
+
+  <div class="section" id="sec-headers">
+    <div class="sec-hdr">
+      <div class="sec-title">Заголовки безопасности</div>
+      <div class="sec-badge" id="cnt-h">—</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cards" id="grid-h"></div>
+  </div>
+
+  <div class="section" id="sec-ssl">
+    <div class="sec-hdr">
+      <div class="sec-title">SSL / TLS</div>
+      <div class="sec-badge" id="cnt-s">—</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cards" id="grid-s"></div>
+  </div>
+
+  <div class="section" id="sec-ports">
+    <div class="sec-hdr">
+      <div class="sec-title">Открытые порты</div>
+      <div class="sec-badge" id="cnt-p">—</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="ports-table" id="list-p"></div>
+  </div>
+
+  <div class="section" id="sec-tech">
+    <div class="sec-hdr">
+      <div class="sec-title">Технологии</div>
+      <div class="sec-badge" id="cnt-t">—</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cards" id="grid-t"></div>
+  </div>
+
+  <div class="section" id="sec-info">
+    <div class="sec-hdr">
+      <div class="sec-title">Утечки информации</div>
+      <div class="sec-badge" id="cnt-i">—</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="paths-table" id="list-i"></div>
+  </div>
+
+</div>
+
+<footer>ЦИФР · Сканер безопасности · Только для авторизованного использования</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
